@@ -1,0 +1,4 @@
+name: RedCarpet
+main: anotherDEVer.RedCarpet.RedCarpet
+version: 1.0
+commands:
