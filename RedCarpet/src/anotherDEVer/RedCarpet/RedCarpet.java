@@ -2,8 +2,8 @@ package anotherDEVer.RedCarpet;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
-import org.bukkit.BlockChangeDelegate.*;
 import org.bukkit.event.*;
 import org.bukkit.event.player.*;
 import org.bukkit.block.*;
@@ -16,6 +16,7 @@ public final class RedCarpet extends JavaPlugin implements Listener
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void PlayerMovement(PlayerMoveEvent move)
 	{
@@ -25,12 +26,16 @@ public final class RedCarpet extends JavaPlugin implements Listener
 		
 		World currentWorld = mover.getWorld();
 		
-		int x = (int) playerLoc.getX();
-		int y = (int) playerLoc.getY();
-		int z = (int) playerLoc.getZ();
+		double dubX = playerLoc.getX();
+		double dubY = playerLoc.getY();
+		double dubZ = playerLoc.getZ();
+		
+		int x = (int) Math.floor(dubX);
+		int y = (int) Math.floor(dubY);
+		int z = (int) Math.floor(dubZ);
 		
 		Block changeBlock = currentWorld.getBlockAt(x, y - 1, z);
 		
-		changeBlock.breakNaturally();
+		changeBlock.setTypeIdAndData(35, DyeColor.RED.getData(), true);
 	}
 }
